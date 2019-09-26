@@ -7,7 +7,7 @@
     tools:context=".Login">
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/toInputField"
         android:layout_width="@dimen/textInputWidth"
         android:layout_height="@dimen/textInputHeight"
         android:layout_marginStart="8dp"
@@ -38,7 +38,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.469"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/toInputField" />
 
     <Button
         android:id="@+id/button"

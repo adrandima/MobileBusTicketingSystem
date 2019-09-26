@@ -14,7 +14,7 @@ public class ApiConnector {
     public static Retrofit getInstance(){
         if(instance == null)
             instance = new Retrofit.Builder()
-                    .baseUrl("http://10.0.2.2:8080")
+                    .baseUrl("https://bus-ticketing-app.herokuapp.com")
                     .addConverterFactory(GsonConverterFactory.create())
                     .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
 

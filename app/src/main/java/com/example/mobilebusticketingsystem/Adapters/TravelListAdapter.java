@@ -1,4 +1,4 @@
-package com.example.mobilebusticketingsystem;
+package com.example.mobilebusticketingsystem.Adapters;
 
 import android.content.Context;
 import android.view.View;
@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.example.mobilebusticketingsystem.Model.Travel;
+import com.example.mobilebusticketingsystem.R;
 
 import java.util.List;
 

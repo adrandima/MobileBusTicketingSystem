@@ -1,10 +1,12 @@
 package com.example.mobilebusticketingsystem;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -15,6 +17,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.example.mobilebusticketingsystem.Adapters.TravelListAdapter;
 import com.example.mobilebusticketingsystem.ApiManager.ApiConnector;
 import com.example.mobilebusticketingsystem.ApiManager.IApiService;
 import com.example.mobilebusticketingsystem.Model.Travel;
@@ -34,17 +37,19 @@ import retrofit2.Retrofit;
 
 public class Home extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
-    //TextView textView;
+
     IApiService apiService;
     TextView tdate;
     TextView month_time;
     TextView greeting;
+    ImageButton busSearch;
+    String userId = "5d8b00e946991e6a4fd9870f";
 
     ListView travelHistoryListView;
     private TravelListAdapter adapter;
     private List<Travel> mTravelList;
 
-    String[] fruitNames = {"Apple","Orange","Kiwi","Passion","Banana"};
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,6 +57,7 @@ public class Home extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
+
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -59,6 +65,7 @@ public class Home extends AppCompatActivity
                         .setAction("Action", null).show();
             }
         });
+
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
@@ -67,7 +74,7 @@ public class Home extends AppCompatActivity
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this);
 
-        //************Changeable Date and Time**************************************************************************
+        //*******************Changeable Date and Time**************************************************************************
         Thread t = new Thread() {
             @Override
             public void run() {
@@ -98,6 +105,17 @@ public class Home extends AppCompatActivity
         };
         t.start();
 
+        //*********************************bus search*********************************************************************
+
+        busSearch = (ImageButton) findViewById(R.id.bus_search_button);
+        busSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent busSerchIntent = new Intent(v.getContext(), BusDetails.class);
+                startActivityForResult(busSerchIntent, 0);
+            }
+        });
+
         //*********************************Create list view*******************************************************************
 
         Retrofit retrofitClient = ApiConnector.getInstance();
@@ -113,14 +131,17 @@ public class Home extends AppCompatActivity
             @Override
             public void onResponse(Call<List<Travel>> call, Response<List<Travel>> response) {
                 if(!response.isSuccessful()){
-                    //textView.setText("Code:"+response.code());
+                    Toast.makeText(getApplicationContext(), response.code(), Toast.LENGTH_SHORT).show();
                     return;
                 }
                 List<Travel> travelHistory = response.body();
 
-
-                for(Travel travel :travelHistory){
-                    mTravelList.add(new Travel(travel.get_id(),travel.getPassengerId(),travel.getBusId(),travel.getDate(),travel.getStartingPoint(),travel.getEndingPoint(),travel.getFare(),travel.getTimeDuration()));
+                if(travelHistory == null){
+                    Toast.makeText(getApplicationContext(),"Result is empty", Toast.LENGTH_SHORT).show();
+                }else{
+                    for(Travel travel :travelHistory){
+                        mTravelList.add(new Travel(travel.get_id(),travel.getPassengerId(),travel.getBusId(),travel.getDate(),travel.getStartingPoint(),travel.getEndingPoint(),travel.getFare(),travel.getTimeDuration()));
+                    }
                 }
 
                 adapter = new TravelListAdapter(getApplicationContext(), mTravelList);
@@ -138,11 +159,9 @@ public class Home extends AppCompatActivity
 
             @Override
             public void onFailure(Call<List<Travel>> call, Throwable t) {
-               // textView.setText(t.getMessage());
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
-
-
 
     }
 
