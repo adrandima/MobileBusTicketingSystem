@@ -55,14 +55,14 @@
         android:layout_marginRight="@dimen/Input_field_layout_margin_Left_Right"
         android:ems="10"
         android:hint="NIC"
-        android:inputType="number"
+        android:inputType="phone"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.486"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/lastName" />
 
     <EditText
-        android:id="@+id/mobileNumber"
+        android:id="@+id/contactNumber"
         android:layout_width="@dimen/textInputWidth"
         android:layout_height="@dimen/textInputHeight"
         android:layout_marginStart="8dp"
@@ -96,7 +96,7 @@
         android:inputType="textEmailAddress"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/mobileNumber" />
+        app:layout_constraintTop_toBottomOf="@+id/contactNumber" />
 
     <EditText
         android:id="@+id/password"
@@ -147,6 +147,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/confirmPassword" />
+
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

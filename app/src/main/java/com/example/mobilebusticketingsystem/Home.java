@@ -105,6 +105,7 @@ public class Home extends AppCompatActivity
         };
         t.start();
 
+
         //*********************************bus search*********************************************************************
 
         busSearch = (ImageButton) findViewById(R.id.bus_search_button);

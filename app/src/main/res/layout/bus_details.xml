@@ -19,7 +19,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/toInputField"
+        android:id="@+id/loginEmail"
         android:layout_width="301dp"
         android:layout_height="@dimen/textInputHeight"
         android:layout_marginEnd="3dp"
@@ -43,7 +43,7 @@
         android:layout_marginTop="16dp"
         android:hint="Choose the time"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toInputField" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
     <Button
         android:id="@+id/searchBusesButton"
@@ -55,7 +55,7 @@
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/etChooseTime"
-        app:layout_constraintTop_toBottomOf="@+id/toInputField" />
+        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
 
     <ListView

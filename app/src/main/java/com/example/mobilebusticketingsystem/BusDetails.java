@@ -13,7 +13,6 @@ import android.widget.TimePicker;
 import android.widget.Toast;
 
 import com.example.mobilebusticketingsystem.Adapters.BusListAdapter;
-import com.example.mobilebusticketingsystem.Adapters.TravelListAdapter;
 import com.example.mobilebusticketingsystem.ApiManager.ApiConnector;
 import com.example.mobilebusticketingsystem.ApiManager.IApiService;
 import com.example.mobilebusticketingsystem.Model.Bus;
@@ -89,7 +88,7 @@ public class BusDetails extends AppCompatActivity {
 
     public void busInformtionFormValidation() throws JSONException {
         fromValue = (EditText)findViewById(R.id.fromInputField);
-        toValue = (EditText)findViewById(R.id.toInputField);
+        toValue = (EditText)findViewById(R.id.loginEmail);
         timeValue = chooseTime.getText().toString();
 
         if(fromValue.getText().toString().length()==0) {
@@ -100,7 +99,7 @@ public class BusDetails extends AppCompatActivity {
             toValue.setError("FIELD CANNOT BE EMPTY");
         }else {
 
-            Bus busInfo = new Bus("Moratuwa","Dehiwala",timeValue);
+
 
             Retrofit retrofitClient = ApiConnector.getInstance();
             apiService = retrofitClient.create(IApiService.class);

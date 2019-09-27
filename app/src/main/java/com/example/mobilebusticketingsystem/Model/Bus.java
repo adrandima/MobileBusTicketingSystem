@@ -23,13 +23,6 @@ public class Bus {
     private String time;
 
 
-    public Bus(String startTime, String endTime, String time) {
-        this.startTime = startTime;
-        this.endTime = endTime;
-        this.time = time;
-
-    }
-
     public Bus(String busPlateNo, String busNo, float price, String startTime, String endTime) {
         this.busPlateNo = busPlateNo;
         this.busNo = busNo;
