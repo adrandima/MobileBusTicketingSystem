@@ -3,15 +3,18 @@ package com.example.mobilebusticketingsystem.ApiManager;
 import com.example.mobilebusticketingsystem.Model.Bus;
 import com.example.mobilebusticketingsystem.Model.BusList;
 import com.example.mobilebusticketingsystem.Model.Travel;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
+import javax.xml.transform.Result;
+
 import io.reactivex.Observable;
+import okhttp3.ResponseBody;
 import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.http.Body;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Field;
 import retrofit2.http.Path;
@@ -21,14 +24,18 @@ public interface IApiService {
 
     @POST("/api/user/register")
     @FormUrlEncoded
-    Observable<String> registerUser(@Field("email") String email,
-                                    @Field("name") String name,
-                                    @Field("password") String password);
+    Call<JsonObject> registerUser(@Field("email") String email,
+                                  @Field("name") String name,
+                                  @Field("password") String password);
 
-
-    @POST("/login")
+    @POST("/api/user/login")
     @FormUrlEncoded
-    Observable<String> loginUser(@Field("email") String email,
+    Call<JsonObject> loginUser(@Field("email") String email,
+                                 @Field("password") String password);
+
+    @POST("/reset")
+    @FormUrlEncoded
+    Observable<String> resetPassword(@Field("email") String email,
                                  @Field("password") String password);
 
     @GET("/travel-history-details/")
@@ -41,4 +48,6 @@ public interface IApiService {
     @FormUrlEncoded
     Call<BusList> getBusDetails(@Field("pickupPoint") String pickupPoint,@Field("destination") String destination);
 
+    @GET("/api/post/")
+    Call<JsonObject> postCall(@Header("auth-token") String auth);
 }

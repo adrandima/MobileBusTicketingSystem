@@ -2,13 +2,36 @@ package com.example.mobilebusticketingsystem;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
 
+import com.example.mobilebusticketingsystem.Adapters.TravelListAdapter;
+import com.example.mobilebusticketingsystem.ApiManager.ApiConnector;
+import com.example.mobilebusticketingsystem.ApiManager.IApiService;
 import com.example.mobilebusticketingsystem.Model.Passenger;
+import com.example.mobilebusticketingsystem.Model.Travel;
+import com.google.gson.Gson;
+import com.google.gson.JsonObject;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.xml.transform.Result;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
 
 public class Register extends AppCompatActivity {
 
@@ -22,6 +45,7 @@ public class Register extends AppCompatActivity {
     Button registrationConfirm;
 
     Passenger passenger;
+    IApiService apiService;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +66,7 @@ public class Register extends AppCompatActivity {
         registrationConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if(firstName.getText().toString().length()==0) {
+                /*if(firstName.getText().toString().length()==0) {
                     firstName.requestFocus();
                     firstName.setError("FIELD CANNOT BE EMPTY");
                 }else if(lastName.getText().toString().length() == 0) {
@@ -72,11 +96,63 @@ public class Register extends AppCompatActivity {
                 }else if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
                     confirmPassword.requestFocus();
                     confirmPassword.setError("PASSWORD SHOULD BE SAME");
-                }else{
-                    Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+                }else{*/
+                    //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
+
+                    Retrofit retrofitClient = ApiConnector.getInstance();
+                    apiService = retrofitClient.create(IApiService.class);
+
+
+                  //  Call<JsonObject> call = apiService.registerUser(email.getText().toString(),firstName.getText().toString(),password.getText().toString());
+                    Call<JsonObject> call = apiService.registerUser("abcd@gmail.com","nimal","q5555weds");
+
+
+                    call.enqueue(new Callback<JsonObject>() {
+                        @Override
+                        public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                            if(!response.isSuccessful()){
+                                Toast.makeText(getApplicationContext(), "Email Already Exist", Toast.LENGTH_SHORT).show();
+                                Intent register = new Intent(Register.this, Register.class);
+                                startActivityForResult(register, 0);
+
+                                return;
+                            }
+                            try {
+                                JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                                System.out.println(jsonObject.toString());
+                               // Toast.makeText(getApplicationContext(),jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                                Toast.makeText(getApplicationContext(),"Registration Success", Toast.LENGTH_SHORT).show();
+                                Intent login = new Intent(Register.this, Login.class);
+                                startActivityForResult(login, 0);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            String userDetails = response.body().toString();
+
+
+                            if(userDetails == null){
+                                Toast.makeText(getApplicationContext(),"Result is empty", Toast.LENGTH_SHORT).show();
+                            }else{
+
+                            }
+
+
+                        }
+
+                        @Override
+                        public void onFailure(Call<JsonObject> call, Throwable t) {
+                            System.out.println("Fail :"+t.getMessage());
+                            Toast.makeText(getApplicationContext(), "Fail :"+t.getMessage(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+
+
+
+
+
                 }
 
-            }
+            //}
         });
     }
 }
