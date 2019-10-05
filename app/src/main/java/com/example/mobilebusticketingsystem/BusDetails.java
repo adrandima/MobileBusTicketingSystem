@@ -69,28 +69,27 @@ public class BusDetails extends AppCompatActivity {
         searchBuses = (Button)findViewById(R.id.searchBusesButton);
 
 
-        getAllBusesDetails();
         searchBuses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                    getAllBusesDetails();
-                    //busInformtionFormValidation();
-
+                try {
+                    busInformtionFormValidation();
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         });
         busInfoListView = (ListView) findViewById(R.id.bus_list_view);
-
+        getAllBusDetails();
 
     }
 
-    public void getAllBusesDetails(){
-
+    public void getAllBusDetails(){
         Retrofit retrofitClient = ApiConnector.getInstance();
         apiService = retrofitClient.create(IApiService.class);
 
 
-        System.out.println("********************Time************************"+timeValue);
+        System.out.println("********************************************"+timeValue);
 
         Call<BusList> call = apiService.getBusesDetails();
         call.enqueue(new Callback<BusList>() {
@@ -128,15 +127,14 @@ public class BusDetails extends AppCompatActivity {
 
             @Override
             public void onFailure(Call<BusList> call, Throwable t) {
-                System.out.println("Error:"+t.getMessage());
-               // Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
     }
 
 
 
-    public void busInformtionFormValidation()  {
+    public void busInformtionFormValidation() throws JSONException {
         fromValue = (EditText)findViewById(R.id.fromInputField);
         toValue = (EditText)findViewById(R.id.loginEmail);
         timeValue = chooseTime.getText().toString();

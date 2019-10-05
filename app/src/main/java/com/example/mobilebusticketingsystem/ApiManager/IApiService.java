@@ -1,8 +1,10 @@
 package com.example.mobilebusticketingsystem.ApiManager;
 
+import com.example.mobilebusticketingsystem.Balance;
 import com.example.mobilebusticketingsystem.Model.Bus;
 import com.example.mobilebusticketingsystem.Model.BusList;
 import com.example.mobilebusticketingsystem.Model.Travel;
+import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -17,6 +19,7 @@ import retrofit2.http.GET;
 import retrofit2.http.Header;
 import retrofit2.http.POST;
 import retrofit2.http.Field;
+import retrofit2.http.PUT;
 import retrofit2.http.Path;
 
 
@@ -44,8 +47,9 @@ public interface IApiService {
     @GET("/travel-history-details/")
     Call<List<Travel>> getTravelsDetails();
 
-    @GET("/travel-history-details/{id}/")
-    Call<List<Travel>> getTravelsDetailsById(@Path("id") String id);
+    @POST("/travel-history-details/passenger/")
+    @FormUrlEncoded
+    Call<List<Travel>> getTravelsDetailsById(@Field("passengerId") String passengerId);
 
     @POST("/bus-details/search-result")
     @FormUrlEncoded
@@ -55,6 +59,16 @@ public interface IApiService {
     Call<BusList> getBusesDetails();
 
 
+    @GET("/token/{id}")
+    Call<List<com.example.mobilebusticketingsystem.Model.Balance>> getBalenceById(@Path("id") String id);
+
     @GET("/api/post/")
     Call<JsonObject> postCall(@Header("auth-token") String auth);
+
+
+    @PUT("/token/reload/{id}")
+    @FormUrlEncoded
+    Call<JsonObject> reloadBalance(@Path("id") String id,@Field("pin") String pin);
+
+
 }

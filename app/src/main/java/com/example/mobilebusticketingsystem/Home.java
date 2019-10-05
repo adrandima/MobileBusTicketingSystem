@@ -42,8 +42,9 @@ public class Home extends AppCompatActivity
     TextView tdate;
     TextView month_time;
     TextView greeting;
+    ImageButton paymentDetails;
     ImageButton busSearch;
-    String userId = "5d8b00e946991e6a4fd9870fa";
+    String userId = "5d9064b26511891fbcdc4928";
 
     ListView travelHistoryListView;
     private TravelListAdapter adapter;
@@ -104,6 +105,15 @@ public class Home extends AppCompatActivity
             }
         };
         t.start();
+        //*********************************Payment Details****************************************************************
+        paymentDetails = (ImageButton) findViewById(R.id.paymentButton);
+        paymentDetails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent busSerchIntent = new Intent(v.getContext(),Balance.class);
+                startActivityForResult(busSerchIntent, 0);
+            }
+        });
 
 
         //*********************************bus search*********************************************************************
@@ -125,7 +135,7 @@ public class Home extends AppCompatActivity
         travelHistoryListView = (ListView) findViewById(R.id.listview);
 
         mTravelList = new ArrayList<Travel>();
-        Call<List<Travel>> call = apiService.getTravelsDetails();
+        Call<List<Travel>> call = apiService.getTravelsDetailsById(userId);
 
 
         call.enqueue(new Callback<List<Travel>>() {

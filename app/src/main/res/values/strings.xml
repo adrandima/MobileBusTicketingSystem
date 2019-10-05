@@ -17,4 +17,7 @@
     <string name="login_string">Login</string>
     <string name="login_input_hint">Your Email or Mobile Number</string>
     <string name="password_hint">Password</string>
+    <string name="balance">Balance</string>
+    <string name="accountBalance">Account Balance</string>
+    <string name="addCredit">Add Credit</string>
 </resources>
