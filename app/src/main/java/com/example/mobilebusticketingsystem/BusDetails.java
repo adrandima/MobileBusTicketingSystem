@@ -67,14 +67,16 @@ public class BusDetails extends AppCompatActivity {
 
         //****************Search buses*********************************************
         searchBuses = (Button)findViewById(R.id.searchBusesButton);
+
+
+        getAllBusesDetails();
         searchBuses.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                try {
-                    busInformtionFormValidation();
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
+
+                    getAllBusesDetails();
+                    //busInformtionFormValidation();
+
             }
         });
         busInfoListView = (ListView) findViewById(R.id.bus_list_view);
@@ -82,11 +84,59 @@ public class BusDetails extends AppCompatActivity {
 
     }
 
+    public void getAllBusesDetails(){
+
+        Retrofit retrofitClient = ApiConnector.getInstance();
+        apiService = retrofitClient.create(IApiService.class);
+
+
+        System.out.println("********************Time************************"+timeValue);
+
+        Call<BusList> call = apiService.getBusesDetails();
+        call.enqueue(new Callback<BusList>() {
+            @Override
+            public void onResponse(Call<BusList> call, Response<BusList> response) {
+                if(!response.isSuccessful()){
+                    Toast.makeText(getApplicationContext(), response.code(), Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                busObjects = new ArrayList<>();
+                busList = response.body().getBuses();
+
+                if(busList == null){
+                    Toast.makeText(getApplicationContext(),"Result is empty", Toast.LENGTH_SHORT).show();
+                }else{
+                    for(int i = 0;i < busList.size();i++){
+                        busObjects.add(new Bus(busList.get(i).getBusPlateNo(),busList.get(i).getBusNo(),busList.get(i).getPrice(),busList.get(i).getStartTime(),busList.get(i).getEndTime()));
+                        System.out.println(busList.get(i).getBusPlateNo()+busList.get(i).getBusNo()+busList.get(i).getEndTime()+busList.get(i).getStartTime());
+                    }
+
+
+                    busListAdapter = new BusListAdapter(getApplicationContext(), busObjects);
+                    busInfoListView.setAdapter(busListAdapter);
+
+                    busInfoListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                        @Override
+                        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                            //Do something
+                            //Ex: display msg with product id get from view.getTag
+                            Toast.makeText(getApplicationContext(), "Clicked product id =" + view.getTag(), Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                }
+            }
+
+            @Override
+            public void onFailure(Call<BusList> call, Throwable t) {
+                System.out.println("Error:"+t.getMessage());
+               // Toast.makeText(getApplicationContext(), t.getMessage(), Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
 
 
 
-
-    public void busInformtionFormValidation() throws JSONException {
+    public void busInformtionFormValidation()  {
         fromValue = (EditText)findViewById(R.id.fromInputField);
         toValue = (EditText)findViewById(R.id.loginEmail);
         timeValue = chooseTime.getText().toString();

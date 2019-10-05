@@ -50,20 +50,19 @@ public class Login extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-         /*       if(loginEmail.getText().toString().length()==0) {
+                if(loginEmail.getText().toString().length()==0) {
                     loginEmail.requestFocus();
                     loginEmail.setError("FIELD CANNOT BE EMPTY");
                 }else if(loginPassword.getText().toString().length() == 0) {
                     loginPassword.requestFocus();
                     loginPassword.setError("FIELD CANNOT BE EMPTY");
                 }else{
-*/
                     Retrofit retrofitClient = ApiConnector.getInstance();
                     apiService = retrofitClient.create(IApiService.class);
 
 
-                    //  Call<JsonObject> call = apiService.registerUser(email.getText().toString(),firstName.getText().toString(),password.getText().toString());
-                    Call<JsonObject> call = apiService.loginUser("abcd@gmail.com","q5555weds");
+                  Call<JsonObject> call = apiService.loginUser("jaliya@gmail.com","jaliya@gmail.com");
+                   // Call<JsonObject> call = apiService.loginUser(loginEmail.getText().toString(),loginPassword.getText().toString());
 
 
                     call.enqueue(new Callback<JsonObject>() {
@@ -79,60 +78,28 @@ public class Login extends AppCompatActivity {
 
                                 Headers headerList = response.headers();
                                 String headerValue = headerList.get("auth-token");
-                                System.out.println("Header Value*******************************"+headerValue.toString());
+                                System.out.println("Header Value*******************************"+headerValue);
 
-                                ApiConnector.AUTH = headerValue;
+
 
                                 try {
                                     JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
-                                    System.out.println(jsonObject.toString());
+                                    System.out.println("**********"+jsonObject.toString());
                                     // Toast.makeText(getApplicationContext(),jsonObject.toString(), Toast.LENGTH_SHORT).show();
-                                    Toast.makeText(getApplicationContext(), "Login Success", Toast.LENGTH_SHORT).show();
+
+                                    if(headerValue==null){
+                                        Toast.makeText(getApplicationContext(), "Invalid Email or Password", Toast.LENGTH_SHORT).show();
+                                    }else{
+                                        ApiConnector.AUTH = headerValue;
+                                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                                        startActivity(intent);
+                                        //System.out.println("**********"+jsonObject.toString());
+                                       // Toast.makeText(getApplicationContext(), "Login Success"+jsonObject.getString("password"), Toast.LENGTH_SHORT).show();
+                                    }
 
                                 } catch (JSONException | NullPointerException e) {
                                     e.printStackTrace();
                                 }
-
-                                                                        Retrofit retrofitClient = ApiConnector.getInstance();
-                                                                        apiService = retrofitClient.create(IApiService.class);
-
-
-                                                                        //  Call<JsonObject> call = apiService.registerUser(email.getText().toString(),firstName.getText().toString(),password.getText().toString());
-                                                                        Call<JsonObject> call1 = apiService.postCall(ApiConnector.AUTH);
-
-
-                                                                        call1.enqueue(new Callback<JsonObject>() {
-                                                                            @Override
-                                                                            public void onResponse(Call<JsonObject> call1, Response<JsonObject> response) {
-
-
-                                                                                if(!response.isSuccessful()){
-                                                                                    Toast.makeText(getApplicationContext(), "Called Failed", Toast.LENGTH_SHORT).show();
-                                                                                    // return;
-                                                                                }else {
-                                                                                    Toast.makeText(getApplicationContext(), "Called", Toast.LENGTH_SHORT).show();
-
-                                                                                }
-                                                                            }
-
-                                                                            @Override
-                                                                            public void onFailure(Call<JsonObject> call1, Throwable t) {
-                                                                                System.out.println("Fail :"+t.getMessage());
-                                                                                Toast.makeText(getApplicationContext(), "Fail :"+t.getMessage(), Toast.LENGTH_SHORT).show();
-                                                                            }
-                                                                        });
-
-
-
-
-
-
-
-
-
-
-                                /*Intent home = new Intent(Login.this, Home.class);
-                                startActivityForResult(home, 0);*/
 
                             }
                         }
@@ -145,7 +112,7 @@ public class Login extends AppCompatActivity {
                     });
 
                 }
-           // }
+            }
         });
 
         forgetButton.setOnClickListener(new View.OnClickListener() {

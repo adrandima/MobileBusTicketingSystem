@@ -66,7 +66,7 @@ public class Register extends AppCompatActivity {
         registrationConfirm.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                /*if(firstName.getText().toString().length()==0) {
+                if(firstName.getText().toString().length()==0) {
                     firstName.requestFocus();
                     firstName.setError("FIELD CANNOT BE EMPTY");
                 }else if(lastName.getText().toString().length() == 0) {
@@ -96,15 +96,15 @@ public class Register extends AppCompatActivity {
                 }else if(!password.getText().toString().equals(confirmPassword.getText().toString())) {
                     confirmPassword.requestFocus();
                     confirmPassword.setError("PASSWORD SHOULD BE SAME");
-                }else{*/
+                }else{
                     //Toast.makeText(getApplicationContext(), "Success", Toast.LENGTH_SHORT).show();
 
                     Retrofit retrofitClient = ApiConnector.getInstance();
                     apiService = retrofitClient.create(IApiService.class);
 
 
-                  //  Call<JsonObject> call = apiService.registerUser(email.getText().toString(),firstName.getText().toString(),password.getText().toString());
-                    Call<JsonObject> call = apiService.registerUser("abcd@gmail.com","nimal","q5555weds");
+                    Call<JsonObject> call = apiService.registerUser(firstName.getText().toString(),lastName.getText().toString(),nic.getText().toString(),contactNumber.getText().toString(),email.getText().toString(),password.getText().toString());
+                    //Call<JsonObject> call = apiService.registerUser("Sanjula","Jayalath","123456789V","0727996237","sanjula@gmail.com","sanjula@gmail.com");
 
 
                     call.enqueue(new Callback<JsonObject>() {
@@ -112,30 +112,29 @@ public class Register extends AppCompatActivity {
                         public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                             if(!response.isSuccessful()){
                                 Toast.makeText(getApplicationContext(), "Email Already Exist", Toast.LENGTH_SHORT).show();
-                                Intent register = new Intent(Register.this, Register.class);
-                                startActivityForResult(register, 0);
 
-                                return;
+
+
+                            }else {
+                                try {
+                                    JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
+                                    System.out.println(jsonObject.toString());
+                                    // Toast.makeText(getApplicationContext(),jsonObject.toString(), Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
+                               /* Intent login = new Intent(Register.this, Login.class);
+                                startActivityForResult(login, 0);*/
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                String userDetails = response.body().toString();
+
+
+                                if (userDetails == null) {
+                                    Toast.makeText(getApplicationContext(), "Result is empty", Toast.LENGTH_SHORT).show();
+                                } else {
+
+                                }
                             }
-                            try {
-                                JSONObject jsonObject = new JSONObject(new Gson().toJson(response.body()));
-                                System.out.println(jsonObject.toString());
-                               // Toast.makeText(getApplicationContext(),jsonObject.toString(), Toast.LENGTH_SHORT).show();
-                                Toast.makeText(getApplicationContext(),"Registration Success", Toast.LENGTH_SHORT).show();
-                                Intent login = new Intent(Register.this, Login.class);
-                                startActivityForResult(login, 0);
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                            String userDetails = response.body().toString();
-
-
-                            if(userDetails == null){
-                                Toast.makeText(getApplicationContext(),"Result is empty", Toast.LENGTH_SHORT).show();
-                            }else{
-
-                            }
-
 
                         }
 
@@ -146,13 +145,9 @@ public class Register extends AppCompatActivity {
                         }
                     });
 
-
-
-
-
                 }
 
-            //}
+            }
         });
     }
 }

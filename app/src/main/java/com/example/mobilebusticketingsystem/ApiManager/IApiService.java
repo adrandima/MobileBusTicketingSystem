@@ -22,13 +22,16 @@ import retrofit2.http.Path;
 
 public interface IApiService {
 
-    @POST("/api/user/register")
+    @POST("/passenger-details/")
     @FormUrlEncoded
-    Call<JsonObject> registerUser(@Field("email") String email,
-                                  @Field("name") String name,
+    Call<JsonObject> registerUser(@Field("firstName") String firstName,
+                                  @Field("lastName") String lastName,
+                                  @Field("NIC") String NIC,
+                                  @Field("contactNumber") String contactNumber,
+                                  @Field("email") String email,
                                   @Field("password") String password);
 
-    @POST("/api/user/login")
+    @POST("/user/login")
     @FormUrlEncoded
     Call<JsonObject> loginUser(@Field("email") String email,
                                  @Field("password") String password);
@@ -47,6 +50,10 @@ public interface IApiService {
     @POST("/bus-details/search-result")
     @FormUrlEncoded
     Call<BusList> getBusDetails(@Field("pickupPoint") String pickupPoint,@Field("destination") String destination);
+
+    @GET("/bus-details/")
+    Call<BusList> getBusesDetails();
+
 
     @GET("/api/post/")
     Call<JsonObject> postCall(@Header("auth-token") String auth);
