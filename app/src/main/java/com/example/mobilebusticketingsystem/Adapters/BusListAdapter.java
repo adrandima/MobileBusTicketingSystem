@@ -44,11 +44,13 @@ public class BusListAdapter  extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         View v = View.inflate(mContext, R.layout.bus_details_list, null);
         TextView busNo = (TextView)v.findViewById(R.id.bus_number);
+        TextView price = (TextView)v.findViewById(R.id.bus_to_info);
         TextView startTime = (TextView)v.findViewById(R.id.bus_start_time);
         TextView endTime = (TextView)v.findViewById(R.id.bus_end_time);
         //Set text for TextView
 
         busNo.setText(mBusList.get(position).getBusNo());
+        price.setText(String.valueOf(mBusList.get(position).getPrice()));
         startTime.setText(String.valueOf(mBusList.get(position).getStartTime()));
         endTime.setText(String.valueOf(mBusList.get(position).getEndTime()));
 

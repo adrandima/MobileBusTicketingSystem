@@ -73,6 +73,8 @@ public class Balance extends AppCompatActivity {
                 System.out.println("Text***************************:"+m_Text);
 
                 addCreditToDatabase(m_Text);
+                Intent message = new Intent(Balance.this, Balance.class);
+                startActivity(message);
 
             }
         });
