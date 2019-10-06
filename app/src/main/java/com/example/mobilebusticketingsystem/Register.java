@@ -121,8 +121,8 @@ public class Register extends AppCompatActivity {
                                     System.out.println(jsonObject.toString());
                                     // Toast.makeText(getApplicationContext(),jsonObject.toString(), Toast.LENGTH_SHORT).show();
                                     Toast.makeText(getApplicationContext(), "Registration Success", Toast.LENGTH_SHORT).show();
-                               /* Intent login = new Intent(Register.this, Login.class);
-                                startActivityForResult(login, 0);*/
+                               Intent login = new Intent(Register.this, Login.class);
+                                startActivityForResult(login, 0);
                                 } catch (JSONException e) {
                                     e.printStackTrace();
                                 }

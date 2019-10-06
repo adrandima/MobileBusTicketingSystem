@@ -11,4 +11,7 @@
     <dimen name="Input_field_layout_margin_Left_Right">8dp</dimen>
     <dimen name="drawble_icon_padding">2dp</dimen>
     <dimen name="register_page_icon_height_width">35dp</dimen>
+    <dimen name="text_view_layout_width">150dp</dimen>
+    <dimen name="text_view_layout_height">33dp</dimen>
+    <dimen name="text_view_layout_marginLeft">7dp</dimen>
 </resources>

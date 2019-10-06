@@ -56,7 +56,7 @@
         android:layout_marginLeft="32dp"
         android:layout_marginTop="4dp"
         android:gravity="center"
-        android:text="TextView"
+        android:text="Hello!"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/date" />
 
@@ -98,8 +98,8 @@
 
     <ListView
         android:id="@+id/listview"
-        android:layout_width="370dp"
-        android:layout_height="202dp"
+        android:layout_width="373dp"
+        android:layout_height="321dp"
         android:layout_marginStart="8dp"
         android:layout_marginLeft="8dp"
         android:layout_marginTop="4dp"

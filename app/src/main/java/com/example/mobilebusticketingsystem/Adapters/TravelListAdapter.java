@@ -46,7 +46,8 @@ public class TravelListAdapter  extends BaseAdapter {
         TextView travelFee = (TextView)v.findViewById(R.id.travel_fee);
         //Set text for TextView
 
-        travelDate.setText(mTravelList.get(position).getDate());
+
+        travelDate.setText(mTravelList.get(position).getDate().substring(0, mTravelList.get(position).getDate().indexOf('T'))+"  "+mTravelList.get(position).getDate().substring( mTravelList.get(position).getDate().indexOf('T')+1,mTravelList.get(position).getDate().indexOf('T')+6));
         travel_start_destination.setText(String.valueOf(mTravelList.get(position).getStartingPoint())+":"+String.valueOf(mTravelList.get(position).getEndingPoint()));
         travelFee.setText(String.valueOf(mTravelList.get(position).getFare()));
 

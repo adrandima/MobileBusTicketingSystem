@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="350dp"
+    android:layout_height="400dp"
+    android:layout_gravity="center"
+    android:background="@drawable/border"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+
+    <RelativeLayout
+        android:layout_width="352dp"
+        android:layout_height="278dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="7dp"
+            android:layout_marginLeft="7dp"
+            android:layout_marginTop="32dp"
+            android:text="Bus plate No" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/textView2"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/text_view_layout_marginLeft"
+            android:layout_marginLeft="@dimen/text_view_layout_marginLeft"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:text="Pick up point" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/textView4"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/text_view_layout_marginLeft"
+            android:layout_marginLeft="@dimen/text_view_layout_marginLeft"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:text="Destination" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/textView6"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/text_view_layout_marginLeft"
+            android:layout_marginLeft="@dimen/text_view_layout_marginLeft"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:text="Time Taken" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/textView7"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/text_view_layout_marginLeft"
+            android:layout_marginLeft="@dimen/text_view_layout_marginLeft"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:text="Fee" />
+
+        <TextView
+            android:id="@+id/textView9"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/textView8"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_marginStart="@dimen/text_view_layout_marginLeft"
+            android:layout_marginLeft="@dimen/text_view_layout_marginLeft"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:text="Passenger" />
+
+        <TextView
+            android:id="@+id/busId"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="@dimen/text_view_layout_marginLeft"
+            android:layout_marginRight="@dimen/text_view_layout_marginLeft"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/pickup"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/busId"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:layout_marginEnd="@dimen/text_view_layout_marginLeft"
+            android:layout_marginRight="@dimen/text_view_layout_marginLeft"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/destination"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/pickup"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:layout_marginEnd="@dimen/text_view_layout_marginLeft"
+            android:layout_marginRight="@dimen/text_view_layout_marginLeft"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/timeTacken"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/destination"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:layout_marginEnd="@dimen/text_view_layout_marginLeft"
+            android:layout_marginRight="@dimen/text_view_layout_marginLeft"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/fee"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/timeTacken"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:layout_marginEnd="@dimen/text_view_layout_marginLeft"
+            android:layout_marginRight="@dimen/text_view_layout_marginLeft"
+            android:text="TextView" />
+
+        <TextView
+            android:id="@+id/passenger"
+            android:layout_width="@dimen/text_view_layout_width"
+            android:layout_height="@dimen/text_view_layout_height"
+            android:layout_below="@+id/fee"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="@dimen/text_view_layout_marginLeft"
+            android:layout_marginEnd="@dimen/text_view_layout_marginLeft"
+            android:layout_marginRight="@dimen/text_view_layout_marginLeft"
+            android:text="TextView" />
+
+    </RelativeLayout>
+
+
+
+
+
+<!--    <Button
+        android:id="@+id/ok"
+        android:layout_width="144dp"
+        android:layout_height="46dp"
+        android:text="@string/continue_"
+        android:onClick="getHistoryDetails"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.921"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.956" />-->
+
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

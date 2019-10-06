@@ -20,4 +20,5 @@
     <string name="balance">Balance</string>
     <string name="accountBalance">Account Balance</string>
     <string name="addCredit">Add Credit</string>
+    <string name="continue_">OK</string>
 </resources>

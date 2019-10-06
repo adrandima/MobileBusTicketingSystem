@@ -44,6 +44,7 @@ public class Home extends AppCompatActivity
     TextView greeting;
     ImageButton paymentDetails;
     ImageButton busSearch;
+    ImageButton historyDetailsGetButton;
     String userId = "5d9064b26511891fbcdc4928";
 
     ListView travelHistoryListView;
@@ -105,13 +106,24 @@ public class Home extends AppCompatActivity
             }
         };
         t.start();
+        //*********************************History Button*****************************************************************
+        historyDetailsGetButton = (ImageButton) findViewById(R.id.historyButton);
+        historyDetailsGetButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent historyDetailsIntent = new Intent(v.getContext(),History.class);
+                startActivityForResult(historyDetailsIntent, 0);
+            }
+        });
+
+
         //*********************************Payment Details****************************************************************
         paymentDetails = (ImageButton) findViewById(R.id.paymentButton);
         paymentDetails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent busSerchIntent = new Intent(v.getContext(),Balance.class);
-                startActivityForResult(busSerchIntent, 0);
+                Intent paymentDetailsIntent= new Intent(v.getContext(),Balance.class);
+                startActivityForResult(paymentDetailsIntent, 0);
             }
         });
 
@@ -163,7 +175,7 @@ public class Home extends AppCompatActivity
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                         //Do something
                         //Ex: display msg with product id get from view.getTag
-                        Toast.makeText(getApplicationContext(), "Clicked product id =" + view.getTag(), Toast.LENGTH_SHORT).show();
+                     //   Toast.makeText(getApplicationContext(), "Clicked product id =" + view.getTag(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }

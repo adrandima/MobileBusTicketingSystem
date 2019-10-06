@@ -8,53 +8,45 @@
 
     <EditText
         android:id="@+id/fromInputField"
-        android:layout_width="301dp"
-        android:layout_height="@dimen/textInputHeight"
+        android:layout_width="389dp"
+        android:layout_height="47dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/loginEmail"
-        android:layout_width="301dp"
-        android:layout_height="@dimen/textInputHeight"
+        android:layout_width="394dp"
+        android:layout_height="62dp"
+        android:layout_marginStart="14dp"
+        android:layout_marginLeft="14dp"
         android:layout_marginEnd="3dp"
         android:layout_marginRight="3dp"
         android:ems="10"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/fromInputField"
         app:layout_constraintVertical_bias="0.013" />
 
 
     <Button
-        android:id="@+id/etChooseTime"
-        android:layout_width="208dp"
-        android:layout_height="50dp"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="16dp"
-        android:layout_marginLeft="16dp"
-        android:layout_marginTop="16dp"
-        android:hint="Choose the time"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
-
-    <Button
         android:id="@+id/searchBusesButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="28dp"
-        android:layout_marginLeft="28dp"
         android:layout_marginTop="16dp"
+        android:layout_marginEnd="3dp"
+        android:layout_marginRight="3dp"
         android:text="Search"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/etChooseTime"
         app:layout_constraintTop_toBottomOf="@+id/loginEmail" />
 
 
