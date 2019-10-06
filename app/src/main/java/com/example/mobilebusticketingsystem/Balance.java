@@ -31,7 +31,7 @@ import retrofit2.Retrofit;
 
 public class Balance extends AppCompatActivity {
     IApiService apiService;
-    String userId = "5d9064b26511891fbcdc4928";
+
 
     private String m_Text = "";
     TextView finalBalance;
@@ -91,7 +91,7 @@ public class Balance extends AppCompatActivity {
         apiService = retrofitClient.create(IApiService.class);
 
 
-        Call<JsonObject> call = apiService.reloadBalance(userId,relordNumber);
+        Call<JsonObject> call = apiService.reloadBalance(ApiConnector.ID,relordNumber);
         // Call<JsonObject> call = apiService.loginUser(loginEmail.getText().toString(),loginPassword.getText().toString());
 
 
@@ -138,7 +138,7 @@ public class Balance extends AppCompatActivity {
         Retrofit retrofitClient = ApiConnector.getInstance();
         apiService = retrofitClient.create(IApiService.class);
 
-        Call<List<com.example.mobilebusticketingsystem.Model.Balance>> call = apiService.getBalenceById(userId);
+        Call<List<com.example.mobilebusticketingsystem.Model.Balance>> call = apiService.getBalenceById(ApiConnector.ID);
 
         call.enqueue(new Callback<List<com.example.mobilebusticketingsystem.Model.Balance>>() {
             @Override

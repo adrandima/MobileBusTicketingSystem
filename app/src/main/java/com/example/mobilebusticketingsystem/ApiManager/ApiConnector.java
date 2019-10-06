@@ -15,6 +15,8 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 public class ApiConnector {
 
     public static String AUTH;
+    public static String EMAIL;
+    public static String ID;
     String URL = "https://bus-ticketing-app.herokuapp.com";
 
     private static Retrofit instance;

@@ -18,8 +18,7 @@
             android:title="Add Card" />
         <item
             android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
-            android:title="Settings" />
+            android:title="Log Out" />
     </group>
 
     <item android:title="Communicate">

@@ -57,14 +57,14 @@ public class BusDetails extends AppCompatActivity {
         setContentView(R.layout.bus_details);
 
         //****************Time Picker*********************************************
-       // chooseTime = (Button)findViewById(R.id.etChooseTime);
-       /* chooseTime.setOnClickListener(new View.OnClickListener() {
+        chooseTime = (Button)findViewById(R.id.etChooseTime);
+        chooseTime.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 showTimePicker();
             }
         });
-*/
+
         //****************Search buses*********************************************
         searchBuses = (Button)findViewById(R.id.searchBusesButton);
 
@@ -80,7 +80,7 @@ public class BusDetails extends AppCompatActivity {
             }
         });
         busInfoListView = (ListView) findViewById(R.id.bus_list_view);
-        getAllBusDetails();
+      //  getAllBusDetails();
 
     }
 

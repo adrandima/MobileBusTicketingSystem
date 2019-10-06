@@ -38,7 +38,6 @@ import retrofit2.Retrofit;
 public class History extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     IApiService apiService;
-    String userId = "5d9064b26511891fbcdc4928";
 
     ListView travelHistoryListView;
     private TravelListAdapter adapter;
@@ -58,7 +57,7 @@ public class History extends AppCompatActivity implements NavigationView.OnNavig
         travelHistoryListView = (ListView) findViewById(R.id.listview);
 
         mTravelList = new ArrayList<Travel>();
-        Call<List<Travel>> call = apiService.getTravelsDetailsById(userId);
+        Call<List<Travel>> call = apiService.getTravelsDetailsById(ApiConnector.ID);
 
 
         call.enqueue(new Callback<List<Travel>>() {
@@ -108,7 +107,7 @@ public class History extends AppCompatActivity implements NavigationView.OnNavig
                         destination.setText(mTravelList.get(position).getEndingPoint());
                         timeTaken.setText(mTravelList.get(position).getTimeDuration());
                         fee.setText(String.valueOf(mTravelList.get(position).getFare()));
-                        passenger.setText(mTravelList.get(position).getPassengerId());
+                        passenger.setText(ApiConnector.EMAIL);
                         // Set the custom layout as alert dialog view
 /*                        Button ok = (Button) findViewById(R.id.ok);
                         ok.setOnClickListener(new View.OnClickListener() {
@@ -136,12 +135,8 @@ public class History extends AppCompatActivity implements NavigationView.OnNavig
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        Intent message = new Intent(History.this, Home.class);
+        startActivity(message);
     }
 
     @Override

@@ -45,7 +45,7 @@ public class Home extends AppCompatActivity
     ImageButton paymentDetails;
     ImageButton busSearch;
     ImageButton historyDetailsGetButton;
-    String userId = "5d9064b26511891fbcdc4928";
+    //String userId = "5d9064b26511891fbcdc4928";
 
     ListView travelHistoryListView;
     private TravelListAdapter adapter;
@@ -56,6 +56,11 @@ public class Home extends AppCompatActivity
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.home_page);
+
+        if(ApiConnector.AUTH==null){
+            Intent historyDetailsIntent = new Intent(this.getApplicationContext(),Login.class);
+            startActivityForResult(historyDetailsIntent, 0);
+        }
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -147,7 +152,7 @@ public class Home extends AppCompatActivity
         travelHistoryListView = (ListView) findViewById(R.id.listview);
 
         mTravelList = new ArrayList<Travel>();
-        Call<List<Travel>> call = apiService.getTravelsDetailsById(userId);
+        Call<List<Travel>> call = apiService.getTravelsDetailsById(ApiConnector.ID);
 
 
         call.enqueue(new Callback<List<Travel>>() {
@@ -208,12 +213,8 @@ public class Home extends AppCompatActivity
 
     @Override
     public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
+        Intent paymentDetailsIntent= new Intent(this.getApplicationContext(),Home.class);
+        startActivityForResult(paymentDetailsIntent, 0);
     }
 
     @Override
@@ -246,12 +247,19 @@ public class Home extends AppCompatActivity
 
         if (id == R.id.nav_home) {
             // Handle the camera action
+            Intent paymentDetailsIntent= new Intent(this.getApplicationContext(),History.class);
+            startActivityForResult(paymentDetailsIntent, 0);
         } else if (id == R.id.nav_gallery) {
+            Intent paymentDetailsIntent= new Intent(this.getApplicationContext(),BusDetails.class);
+            startActivityForResult(paymentDetailsIntent, 0);
 
         } else if (id == R.id.nav_slideshow) {
-
+            Intent paymentDetailsIntent= new Intent(this.getApplicationContext(),Balance.class);
+            startActivityForResult(paymentDetailsIntent, 0);
         } else if (id == R.id.nav_tools) {
-
+            ApiConnector.AUTH=null;
+            Intent login= new Intent(this.getApplicationContext(),Login.class);
+            startActivityForResult(login, 0);
         } else if (id == R.id.nav_share) {
 
         } else if (id == R.id.nav_send) {

@@ -61,8 +61,8 @@ public class Login extends AppCompatActivity {
                     apiService = retrofitClient.create(IApiService.class);
 
 
-                  Call<JsonObject> call = apiService.loginUser("jaliya@gmail.com","jaliya@gmail.com");
-                   // Call<JsonObject> call = apiService.loginUser(loginEmail.getText().toString(),loginPassword.getText().toString());
+                 // Call<JsonObject> call = apiService.loginUser("jaliya@gmail.com","jaliya@gmail.com");
+                   Call<JsonObject> call = apiService.loginUser(loginEmail.getText().toString(),loginPassword.getText().toString());
 
 
                     call.enqueue(new Callback<JsonObject>() {
@@ -91,6 +91,9 @@ public class Login extends AppCompatActivity {
                                         Toast.makeText(getApplicationContext(), "Invalid Email or Password", Toast.LENGTH_SHORT).show();
                                     }else{
                                         ApiConnector.AUTH = headerValue;
+                                        ApiConnector.EMAIL = jsonObject.get("email").toString();
+                                        ApiConnector.ID = jsonObject.get("_id").toString();
+                                        System.out.println("email***************************"+ApiConnector.EMAIL+":"+ApiConnector.ID);
                                         Intent intent = new Intent(getApplicationContext(), Home.class);
                                         startActivity(intent);
                                         //System.out.println("**********"+jsonObject.toString());
@@ -131,5 +134,10 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public void onBackPressed() {
+        Toast.makeText(getApplicationContext(), "Please login", Toast.LENGTH_SHORT).show();
     }
 }
